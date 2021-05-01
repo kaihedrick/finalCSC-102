@@ -1,0 +1,35 @@
+body{
+    background-color: white;
+    background-image: linear-gradient(90deg, white 0%, #2eacd4 100%);
+    font-size: 15px;
+}
+.button{
+    width: 150px;
+    height: 30px;
+    background-color: white;
+    border-radius: 12px;
+    border-color: lightblue;
+}
+.lgButton{
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border-radius: 12px;
+    border-color: lightblue;
+}
+
+
+.crapsButton{
+    width: 150px;
+    height: 30px;
+    background-color: white;
+    border-radius: 12px;
+    border-color: red;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    font-style: oblique;
+}
+
+#die1Res {
+    color:green;
+}

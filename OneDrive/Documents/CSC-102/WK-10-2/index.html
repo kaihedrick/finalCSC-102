@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<!--Kai Hedrick
+    kaihedri@uat.edu
+    WK-10-1
+-->
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="code.js"></script>
+<script src="dataLoader.js"></script>
+
+<head>
+    <title>
+        UAT Space Page
+    </title>
+    <script>
+        //variables for the dom
+        var theTime = new Date();
+        var tempTime = new Date();
+        var time_interval = 5000;
+        var running = true;
+        var index = 0;
+        var timer;
+
+
+        //load data into array
+        var data = getData();
+
+        // function to load and display data
+        function updateDisplay() {
+            theTime = new Date();
+            console.log("UpdateDisplay is running..."); 
+            var timeRead = data[index].time_seconds;
+            if (timeRead >= 10) {
+                document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                document.getElementById("data").rows["latitude"].innerHTML = dataRow("latitude", data[index].latitude, " ");
+                document.getElementById("data").rows["longitude"].innerHTML = dataRow("longitude", data[index].longitude, " ");
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("gps altitude", data[index].gps_altitude, " ");
+                document.getElementById("data").rows["bmp_altitude"].innerHTML = dataRow("bmp altitude", data[index].bmpSensor_altitude, " ");
+                document.getElementById("data").rows["bmp_pressure"].innerHTML = dataRow("bmp pressure", data[index].bmpSensor_pressure, " ");
+                document.getElementById("data").rows["bmp_temp"].innerHTML = dataRow("bmp temp", data[index].bmpSensor_temp, " ");
+                document.getElementById("data").rows["cssTemp_temp"].innerHTML = dataRow("css temp", data[index].cssTemp_temp, " ");
+                document.getElementById("data").rows["cssTemp_eCO2"].innerHTML = dataRow("css eCO2", data[index].cssSensor_eCO2, " ");
+                document.getElementById("data").rows["cssTemp_TVOC"].innerHTML = dataRow("css TVOC", data[index].cssSensor_TVOC, " ");
+                document.getElementById("data").rows["UV"].innerHTML = dataRow("latitude", data[index].UV, " ");
+                document.getElementById("data").rows["accelX"].innerHTML = dataRow("accel X", data[index].accelX, " ");
+                document.getElementById("data").rows["accelY"].innerHTML = dataRow("accel Y", data[index].accelY, " ");
+                document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accel Z", data[index].accelZ, " ");
+                document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magnetic X", data[index].magneticX, " ");
+                document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magnetic Y", data[index].magneticY, " ");
+                document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magnetic Z", data[index].magneticZ, " ");
+                document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX, " ");
+                document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY, " ");
+                document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ, " ");
+
+
+                if (index < 500) {
+                    index = index + 1;
+                }
+                else {
+                    index = 0;
+                }
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <table class="tableTop">
+        <tr>
+            <td><img src="UATspaceLogo.jpg"></td>
+            <td>
+                <h1>
+                    UATSpace Program
+                </h1>
+            </td>
+        </tr>
+    </table>
+
+    <table id="data" border="2" width="70%" class="table2">
+        <col style="width: 35%" ;>
+        <col style="width: 35%" ;>
+        <thread>
+            <tr style="font-family: fantasy;">
+                <th align="left"> Data type</th>
+                <th align="left"> Reading</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmp_altitude"></tr>
+            <tr id="bmp_pressure"></tr>
+            <tr id="bmp_temp"></tr>
+            <tr id="cssTemp_temp"></tr>
+            <tr id="cssTemp_eCO2"></tr>
+            <tr id="cssTemp_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+        </tbody>
+    </table>
+
+<br>
+
+The current Time is: <div id="time"></div>
+
+    <br>
+    <p id="ctdnTimer">Countdown Timer Results</p>
+    <br>
+    <button class="button" id="startButton" onclick="start();">Start</button>
+    <button class="button" id="stopButton" onclick="stop();">Stop</button> <br>
+    <button class="lgButton" onclick="playStation()">Play Space Station Sounds</button>
+    <h1>Craps Results</h1>
+    <!--Random Dice-->
+    <p id="die1Res">die1 Results</p>
+    <!--Random Dice-->
+    <p id="die2Res">die2 Results</p>
+    <!--sum of dice values-->
+    <p id="sumRes">Sum Results</p>
+    <!--win, lose, or push results-->
+    <p id="finalRes">Final Results</p>
+    <!--starts craps game calling play function from code.js-->
+    <button class="button" onclick="play(); ">Play Craps</button>
+    <br>
+
+    <p id="RndNum">Random Number Results</p>
+    <br>
+    <button class="button" onclick="checkCreds()">checkCreds</button>
+    <button class="button" onclick="ranNumGen()">random number</button>
+
+</body>
+
+
+</html>
